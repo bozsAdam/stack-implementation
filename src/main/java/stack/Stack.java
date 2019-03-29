@@ -1,10 +1,9 @@
 package stack;
 
+import stack.exception.StackOverFlowException;
 import stack.exception.StackUnderFlowException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,13 +18,15 @@ public class Stack<T>{
 
     public void push(T t){
         if(size() != storage.length){
-            for (int i = storage.length-1; i > 0 ; i--) {
+            for (int i = storage.length-1; i >= 0 ; i--) {
                 if(storage[i] == null){
                     storage[i] = t;
                     return;
                 }
             }
         }
+
+        throw new StackOverFlowException();
     }
 
     public int size(){
@@ -64,6 +65,18 @@ public class Stack<T>{
         T e = this.peek();
         removeElementAt(getFirstIndex());
         return e;
+    }
+
+    public boolean contains(T t){
+        for (T element : storage){
+            if(element != null){
+                if(element.equals(t)){
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
 
