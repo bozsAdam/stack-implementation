@@ -14,6 +14,8 @@ public class Main {
 
         System.out.println(Arrays.toString(stack.getStorage()));
 
+        System.out.println(stack.pop());
+        System.out.println(Arrays.toString(stack.getStorage()));
 
     }
 

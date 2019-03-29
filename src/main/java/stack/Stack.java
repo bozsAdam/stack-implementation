@@ -39,17 +39,31 @@ public class Stack<T>{
     }
 
     public T peek() {
-
-
-        try {
-            return Stream.of(storage)
-                    .filter(Objects::nonNull)
-                    .findFirst()
-                    .orElseThrow(StackUnderFlowException::new);
-        } catch (StackUnderFlowException e) {
-            e.printStackTrace();
+        return Stream.of(storage)
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(StackUnderFlowException::new);
+    }
+    
+    private int getFirstIndex(){
+        if(this.size() != 0){
+            for (int i = 0; i < storage.length ; i++) {
+                if(storage[i] != null){
+                    return i;
+                }
+            }
         }
-        return null;
+        return -1;
+    }
+
+    private void removeElementAt(int index){
+        storage[index] = null;
+    }
+
+    public T pop(){
+        T e = this.peek();
+        removeElementAt(getFirstIndex());
+        return e;
     }
 
 
