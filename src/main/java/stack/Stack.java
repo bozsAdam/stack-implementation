@@ -35,10 +35,6 @@ public class Stack<T>{
                 .size();
     }
 
-    public T[] getStorage() {
-        return storage;
-    }
-
     public T peek() {
         return Stream.of(storage)
                 .filter(Objects::nonNull)
